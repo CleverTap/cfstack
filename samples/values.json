@@ -1,0 +1,7 @@
+{
+  "eu-west-1": {
+    "Sample-Bucket": {
+      "BucketExpirationDays": "7"
+    }
+  }
+}

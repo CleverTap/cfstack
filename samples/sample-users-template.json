@@ -1,0 +1,63 @@
+{
+  "Description": "AWS CloudFormation template that describes the System stack for users and groups",
+  "Resources": {
+    "SampleIamGroup": {
+      "Type": "AWS::IAM::Group",
+      "Properties": {
+      }
+    },
+    "SampleIamPolicy": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "Groups": [
+          {
+            "Ref": "SampleIamGroup"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Sid": "SamplePolicyStatement",
+              "Effect": "Allow",
+              "Action": [
+                "iam:ListAccountAliases",
+                "iam:ListUsers",
+                "iam:ListVirtualMFADevices",
+                "iam:GetAccountPasswordPolicy",
+                "iam:GetAccountSummary"
+              ],
+              "Resource": "*"
+            }
+          ]
+        },
+        "PolicyName": {
+          "Fn::Join": [
+            "-",
+            [
+              {
+                "Ref": "AWS::StackName"
+              },
+              "SampleIamPolicy"
+            ]
+          ]
+        }
+      }
+    },
+    "SampleIamUser": {
+      "Type": "AWS::IAM::User",
+      "Properties": {
+        "LoginProfile": {
+          "Password": "changeme-umRvTSe",
+          "PasswordResetRequired": true
+        },
+        "UserName": "SampleUser",
+        "Groups": [
+          {
+            "Ref": "SampleIamGroup"
+          }
+        ]
+      }
+    }
+  }
+}

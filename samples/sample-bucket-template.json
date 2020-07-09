@@ -1,0 +1,26 @@
+{
+  "Description": "AWS CloudFormation template that a bucket",
+  "Parameters": {
+    "BucketExpirationDays": {
+      "Description": "No of days after which objects in bucket are deleted",
+      "Type": "String"
+    }
+  },
+  "Resources": {
+    "S3Bucket": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "LifecycleConfiguration": {
+          "Rules": [
+            {
+              "Status": "Enabled",
+              "ExpirationInDays": {
+                "Ref": "BucketExpirationDays"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
