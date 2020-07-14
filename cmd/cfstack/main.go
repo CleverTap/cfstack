@@ -17,6 +17,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/CleverTap/cfstack/internal/pkg/cmd/cfstack"
 	"os"
 	"strings"
 )
@@ -39,5 +40,5 @@ func main() {
 			os.Exit(0)
 		}
 	}
-	Execute()
+	cfstack.Execute()
 }

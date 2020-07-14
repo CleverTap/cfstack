@@ -13,12 +13,11 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 */
-package main
+package cfstack
 
 import (
 	goflag "flag"
 	"fmt"
-	"github.com/CleverTap/cfstack/internal/pkg/cmd/cfstack"
 	"github.com/fatih/color"
 	"github.com/golang/glog"
 	"github.com/mitchellh/go-homedir"
@@ -59,10 +58,10 @@ func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cfstack.yaml)")
 	rootCmd.PersistentFlags().StringP("profile", "", "", "Profile to use from AWS credentials")
 
-	rootCmd.AddCommand(cfstack.NewInitCmd())
-	rootCmd.AddCommand(cfstack.NewDeployCmd())
-	rootCmd.AddCommand(cfstack.NewDiffCmd())
-	rootCmd.AddCommand(cfstack.NewDeleteCmd())
+	rootCmd.AddCommand(NewInitCmd())
+	rootCmd.AddCommand(NewDeployCmd())
+	rootCmd.AddCommand(NewDiffCmd())
+	rootCmd.AddCommand(NewDeleteCmd())
 
 	flag.CommandLine.AddGoFlagSet(goflag.CommandLine)
 }
