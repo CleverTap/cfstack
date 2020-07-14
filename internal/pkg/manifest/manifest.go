@@ -61,20 +61,6 @@ func (manifest *Manifest) validateManifestFile() error {
 		return errors.Errorf("No Regions found")
 	}
 
-	for _, region := range manifest.Regions {
-		cnt = 0
-		for _, p := range partitions {
-			for _, pr := range p.Regions() {
-				if region.Name == pr.ID() {
-					cnt++
-				}
-			}
-		}
-		if cnt == 0 {
-			return errors.Errorf("%s is not a valid region", region.Name)
-		}
-	}
-
 	validate := validator.New()
 	err := validate.Struct(manifest)
 	if err != nil {
@@ -95,6 +81,18 @@ func (manifest *Manifest) validateManifestFile() error {
 					return errors.Errorf("Missing field %s for region %s", e.Field(), region.Name)
 				}
 			}
+		}
+
+		cnt = 0
+		for _, p := range partitions {
+			for _, pr := range p.Regions() {
+				if region.Name == pr.ID() {
+					cnt++
+				}
+			}
+		}
+		if cnt == 0 {
+			return errors.Errorf("%s is not a valid region", region.Name)
 		}
 
 		for j, s := range region.Stacks {

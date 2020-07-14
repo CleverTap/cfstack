@@ -1,0 +1,34 @@
+{
+  "Regions": [
+    {
+      "Stacks": [
+        {
+          "StackName": "System-Users",
+          "Action": "CREATE",
+          "StackPolicy": {},
+          "Parameters": {
+          },
+          "TemplatePath": "sample-users-template.json"
+        },
+        {
+          "StackName": "Sample-Bucket",
+          "Action": "CREATE",
+          "StackPolicy": {
+            "Statement": [
+              {
+                "Effect": "Allow",
+                "Action": "Update:*",
+                "Principal": "*",
+                "Resource": "*"
+              }
+            ]
+          },
+          "Parameters": {
+            "BucketExpirationDays": "{{ BucketExpirationDays }}"
+          },
+          "TemplatePath": "sample-bucket-template.json"
+        }
+      ]
+    }
+  ]
+}

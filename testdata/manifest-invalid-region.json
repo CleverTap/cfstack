@@ -1,0 +1,17 @@
+{
+  "Regions": [
+    {
+      "Name": "eu-west",
+      "Stacks": [
+        {
+          "StackName": "System-Users",
+          "Action": "CREATE",
+          "StackPolicy": {},
+          "Parameters": {
+          },
+          "TemplatePath": "sample-users-template.json"
+        }
+      ]
+    }
+  ]
+}
