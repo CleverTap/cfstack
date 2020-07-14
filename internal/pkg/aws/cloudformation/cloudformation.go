@@ -281,7 +281,7 @@ func (cf CloudFormation) trackChangeSetCreateStatus(stackName string, changeSetN
 	for {
 		select {
 		case <-timeout:
-			return nil, false, errors.Errorf("Stack %s failed to update/create within 24 hours...")
+			return nil, false, errors.New("Stack %s failed to update/create within 24 hours...")
 		case <-ticker:
 			res, err := cf.client.DescribeChangeSet(&cloudformation.DescribeChangeSetInput{
 				ChangeSetName: aws.String(changeSetName),
@@ -598,7 +598,7 @@ func (cf CloudFormation) trackStackCreateUpdateStatus(stackName string) error {
 	for completed == false {
 		select {
 		case <-timeout:
-			return errors.Errorf("Stack %s failed to update/create within 24 hours...")
+			return errors.Errorf("Stack %s failed to update/create within 24 hours...", stackName)
 		case <-ticker:
 			res, err := cf.client.DescribeStacks(&cloudformation.DescribeStacksInput{
 				StackName: aws.String(stackName),
