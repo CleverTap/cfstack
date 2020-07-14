@@ -7,29 +7,29 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	testCases := map[string]struct{
-		manifestFile string
+	testCases := map[string]struct {
+		manifestFile    string
 		expectedRegions int
 		expectedStacks  int
-		exceptedError error
+		exceptedError   error
 	}{
-		"parse valid manifest file" : {
-			manifestFile: "../../../testdata/manifest.json",
+		"parse valid manifest file": {
+			manifestFile:    "../../../testdata/manifest.json",
 			expectedRegions: 1,
-			expectedStacks: 2,
+			expectedStacks:  2,
 		},
 		"invalid region": {
-			manifestFile: "../../../testdata/manifest-invalid-region.json",
+			manifestFile:  "../../../testdata/manifest-invalid-region.json",
 			exceptedError: fmt.Errorf("eu-west is not a valid region"),
 		},
 		"missing region name": {
-			manifestFile: "../../../testdata/manifest-missing-region-name.json",
+			manifestFile:  "../../../testdata/manifest-missing-region-name.json",
 			exceptedError: fmt.Errorf("Region name is missing for %d element", 0),
 		},
 	}
 
-	for name,tc := range testCases {
-		t.Run(name,func(t *testing.T){
+	for name, tc := range testCases {
+		t.Run(name, func(t *testing.T) {
 			m := Manifest{}
 
 			err := m.Parse(tc.manifestFile)
@@ -42,6 +42,5 @@ func TestParse(t *testing.T) {
 			}
 		})
 	}
-
 
 }

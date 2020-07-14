@@ -2,10 +2,10 @@ package worker
 
 import (
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/cloudformation"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/s3"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/session"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/stack"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/cloudformation"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/s3"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/session"
+	"github.com/CleverTap/cfstack/internal/pkg/stack"
 	"github.com/Jeffail/gabs"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/fatih/color"

@@ -2,9 +2,9 @@ package cfstack
 
 import (
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/cloudformation"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/session"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/stack"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/cloudformation"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/session"
+	"github.com/CleverTap/cfstack/internal/pkg/stack"
 	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 	"os"

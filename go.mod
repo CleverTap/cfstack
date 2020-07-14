@@ -1,10 +1,11 @@
-module git.wizrocket.net/infra/cfstack
+module github.com/CleverTap/cfstack
 
 go 1.12
 
 require (
 	github.com/Jeffail/gabs v1.4.0
 	github.com/aws/aws-sdk-go v1.21.7
+	github.com/awslabs/goformation v1.2.1
 	github.com/awslabs/goformation/v3 v3.1.0
 	github.com/dsnet/compress v0.0.1 // indirect
 	github.com/fatih/color v1.7.0

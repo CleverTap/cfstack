@@ -2,12 +2,12 @@ package cfstack
 
 import (
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/cloudformation"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/s3"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/session"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/manifest"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/util"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/worker"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/cloudformation"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/s3"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/session"
+	"github.com/CleverTap/cfstack/internal/pkg/manifest"
+	"github.com/CleverTap/cfstack/internal/pkg/util"
+	"github.com/CleverTap/cfstack/internal/pkg/worker"
 	"github.com/Jeffail/gabs"
 	"github.com/fatih/color"
 	"github.com/google/uuid"

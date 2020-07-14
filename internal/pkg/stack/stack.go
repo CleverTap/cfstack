@@ -3,9 +3,9 @@ package stack
 import (
 	"encoding/json"
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/cloudformation"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/s3"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/templates"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/cloudformation"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/s3"
+	"github.com/CleverTap/cfstack/internal/pkg/templates"
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/fatih/color"
 	"github.com/golang/glog"
@@ -21,19 +21,19 @@ const (
 )
 
 type Stack struct {
-	StackName               string                   `validate:"required",json:"StackName"`
-	TemplatePath            string                   `validate:"required",json:"TemplatePath"`
-	TemplateRootPath        string                   `json:"TemplateRootPath"`
-	AbsTemplatePath         string                   `json:"AbsTemplatePath"`
-	TemplateUrl             string                   `json:"TemplateUrl"`
-	Action                  string                   `validate:"required",json:"Action"`
-	StackPolicy             templates.PolicyDocument `validate:"required",json:"StackPolicy"`
-	Region                  string                   `json:"Region"`
-	UID                     string                   `json:"UID,omitempty"`
-	Bucket                  string                   `json:"Bucket,omitempty"`
-	Parameters              map[string]string        `validate:"required",json:"Parameters"`
-	DeploymentOrder         int                      `json:"DeploymentOrder"`
-	Changes                 *cloudformation.Changes
+	StackName        string                   `validate:"required",json:"StackName"`
+	TemplatePath     string                   `validate:"required",json:"TemplatePath"`
+	TemplateRootPath string                   `json:"TemplateRootPath"`
+	AbsTemplatePath  string                   `json:"AbsTemplatePath"`
+	TemplateUrl      string                   `json:"TemplateUrl"`
+	Action           string                   `validate:"required",json:"Action"`
+	StackPolicy      templates.PolicyDocument `validate:"required",json:"StackPolicy"`
+	Region           string                   `json:"Region"`
+	UID              string                   `json:"UID,omitempty"`
+	Bucket           string                   `json:"Bucket,omitempty"`
+	Parameters       map[string]string        `validate:"required",json:"Parameters"`
+	DeploymentOrder  int                      `json:"DeploymentOrder"`
+	Changes          *cloudformation.Changes
 
 	SuppressMessages bool
 

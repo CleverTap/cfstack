@@ -2,7 +2,7 @@ package cloudformation
 
 import (
 	"encoding/json"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/templates"
+	"github.com/CleverTap/cfstack/internal/pkg/templates"
 	"github.com/Jeffail/gabs"
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/awserr"

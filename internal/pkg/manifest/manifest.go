@@ -3,7 +3,7 @@ package manifest
 import (
 	"encoding/json"
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/stack"
+	"github.com/CleverTap/cfstack/internal/pkg/stack"
 	"github.com/aws/aws-sdk-go/aws/endpoints"
 	"github.com/golang/glog"
 	"github.com/pkg/errors"

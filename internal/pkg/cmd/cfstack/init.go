@@ -3,9 +3,9 @@ package cfstack
 import (
 	"encoding/json"
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/cloudformation"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/session"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/templates"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/cloudformation"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/session"
+	"github.com/CleverTap/cfstack/internal/pkg/templates"
 	"github.com/fatih/color"
 	"github.com/google/uuid"
 	"github.com/spf13/cobra"

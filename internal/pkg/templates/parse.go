@@ -1,7 +1,7 @@
 package templates
 
 import (
-	"github.com/wizrocket/goformation"
+	"github.com/awslabs/goformation"
 )
 
 func IsServerlessTemplate(templatePath string) (bool, error) {

@@ -18,7 +18,7 @@ package main
 import (
 	goflag "flag"
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/cmd/cfstack"
+	"github.com/CleverTap/cfstack/internal/pkg/cmd/cfstack"
 	"github.com/fatih/color"
 	"github.com/golang/glog"
 	"github.com/mitchellh/go-homedir"

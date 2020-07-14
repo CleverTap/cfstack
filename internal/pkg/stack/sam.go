@@ -3,8 +3,8 @@ package stack
 import (
 	"compress/flate"
 	"fmt"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/aws/s3"
-	"git.wizrocket.net/infra/cfstack/internal/pkg/util"
+	"github.com/CleverTap/cfstack/internal/pkg/aws/s3"
+	"github.com/CleverTap/cfstack/internal/pkg/util"
 	"github.com/golang/glog"
 	"github.com/google/uuid"
 	"github.com/mholt/archiver"
