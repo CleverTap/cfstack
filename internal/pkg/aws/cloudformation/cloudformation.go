@@ -115,6 +115,30 @@ func (cf CloudFormation) GetStackResourcePhysicalId(stack string, resource strin
 	return aws.StringValue(res.StackResourceDetail.PhysicalResourceId), nil
 }
 
+func (cf CloudFormation) GetTemplateString(stack string) (string, error) {
+
+	stackExists, err := cf.StackExists(stack)
+
+	if err != nil {
+		return "{}", err
+	}
+
+	if !stackExists {
+		return "{}", nil
+	}
+
+	res, err := cf.client.GetTemplate(&cloudformation.GetTemplateInput{
+		StackName:     aws.String(stack),
+		TemplateStage: aws.String("Original"),
+	})
+
+	if err != nil {
+		return "{}", err
+	}
+
+	return aws.StringValue(res.TemplateBody), nil
+}
+
 func (cf CloudFormation) StackExists(stackName string) (bool, error) {
 
 	timeout := time.After(24 * time.Hour)

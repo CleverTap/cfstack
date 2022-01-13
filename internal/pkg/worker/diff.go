@@ -216,7 +216,24 @@ func stackDiffWorker(id int, waitGroup *sync.WaitGroup, stackDiffWorkerJobs <-ch
 			case <-timeout:
 				stackDiffWorkerResults <- &stackDiffWorkerResult{Err: errors.New("too many AWS API calls. Try again later")}
 			case <-ticker:
-				err := s.Diff()
+			    hasDiff, err := s.IsStackDiffExpected()
+			    if err!=nil {
+			        stackDiffWorkerResults <- &stackDiffWorkerResult{
+                	    Stack: s,
+                	    Err:   err,
+                    }
+                    diffComplete = true
+                    continue
+                }
+                if !hasDiff {
+                    stackDiffWorkerResults <- &stackDiffWorkerResult{
+                        Stack: s,
+                        Err:   fmt.Errorf("No updates are to be performed"),
+                    }
+                    diffComplete = true
+                    continue
+                }
+				err = s.Diff()
 
 				if err != nil {
 					if aerr, ok := err.(awserr.Error); ok {

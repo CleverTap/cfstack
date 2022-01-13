@@ -1,6 +1,7 @@
 package stack
 
 import (
+    "crypto/sha256"
 	"encoding/json"
 	"fmt"
 	"github.com/CleverTap/cfstack/internal/pkg/aws/cloudformation"
@@ -9,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/awserr"
 	"github.com/fatih/color"
 	"github.com/golang/glog"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -62,6 +64,52 @@ func (s *Stack) SetUuid(uuid string) {
 
 func (s *Stack) getChangeSetName() string {
 	return fmt.Sprintf("changeset-%s-%s", s.UID, s.StackName)
+}
+
+func (s *Stack) IsStackDiffExpected() (bool, error)  {
+	template, err := s.Deployer.GetTemplateString(s.StackName)
+    if err != nil {
+        return false, err
+    }
+    
+    processedTemplateSHA := sha256.Sum256([]byte(template))
+    if err != nil {
+        return false, err
+    }
+    
+    givenTemplateFileName := filepath.Base(s.TemplatePath)
+    givenTemplateBasePath, err := filepath.Abs(filepath.Dir(s.TemplatePath))
+    if err != nil {
+        return false, err
+    }
+    
+    givenTemplateFile, err := os.Open(filepath.Join(givenTemplateBasePath, givenTemplateFileName))
+    if err != nil {
+        return false, err
+    }
+    defer givenTemplateFile.Close()
+
+    givenTemplateByteValue, err := ioutil.ReadAll(givenTemplateFile)
+    if err != nil {
+        return false, err
+    }
+    
+    givenTemplateSHA := sha256.Sum256(givenTemplateByteValue)
+    bitsNumber := bitsDifference(&processedTemplateSHA, &givenTemplateSHA)
+    if bitsNumber!=0 {
+        return true, nil
+    }
+    return false, nil
+}
+
+func bitsDifference(h1, h2 *[sha256.Size]byte) int {
+    n := 0
+    for i := range h1 {
+        for b := h1[i] ^ h2[i]; b != 0; b &= b - 1 {
+            n++
+        }
+    }
+    return n
 }
 
 func (s *Stack) Deploy() error {
